@@ -406,6 +406,7 @@ exports[`OrganizationMembersView No Require Link does not have 2fa warning if us
                     },
                   }
                 }
+                key="1"
                 member={
                   Object {
                     "email": "",
@@ -660,6 +661,7 @@ exports[`OrganizationMembersView No Require Link does not have 2fa warning if us
                     },
                   }
                 }
+                key="2"
                 member={
                   Object {
                     "email": "",
@@ -913,6 +915,7 @@ exports[`OrganizationMembersView No Require Link does not have 2fa warning if us
                     },
                   }
                 }
+                key="3"
                 member={
                   Object {
                     "email": "",
@@ -1559,6 +1562,7 @@ exports[`OrganizationMembersView Require Link does not have 2fa warning if user 
                     },
                   }
                 }
+                key="1"
                 member={
                   Object {
                     "email": "",
@@ -1848,6 +1852,7 @@ exports[`OrganizationMembersView Require Link does not have 2fa warning if user 
                     },
                   }
                 }
+                key="2"
                 member={
                   Object {
                     "email": "",
@@ -2137,6 +2142,7 @@ exports[`OrganizationMembersView Require Link does not have 2fa warning if user 
                     },
                   }
                 }
+                key="3"
                 member={
                   Object {
                     "email": "",
