@@ -51,6 +51,9 @@ def register(type):
 
 
 class Serializer(object):
+    def __init__(self, environment_id_func=None):
+        self.environment_id_func = environment_id_func if environment_id_func is not None else lambda: None
+
     def __call__(self, obj, attrs, user, *args, **kwargs):
         if obj is None:
             return

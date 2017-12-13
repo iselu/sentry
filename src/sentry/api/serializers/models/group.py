@@ -35,9 +35,6 @@ disabled = object()
 
 @register(Group)
 class GroupSerializer(Serializer):
-    def __init__(self, environment_id_func=None):
-        self.environment_id_func = environment_id_func if environment_id_func is not None else lambda: None
-
     def _get_subscriptions(self, item_list, user):
         """
         Returns a mapping of group IDs to a two-tuple of (subscribed: bool,
@@ -144,9 +141,13 @@ class GroupSerializer(Serializer):
             ).select_related('user')
         )
 
-        # TODO(brett): support environment in this serializer
-        user_counts = tagstore.get_groups_user_counts(
-            item_list[0].project_id, [g.id for g in item_list], environment_id=None)
+        try:
+            environment_id = self.environment_id_func()
+        except Environment.DoesNotExist:
+            user_counts = {}
+        else:
+            user_counts = tagstore.get_groups_user_counts(
+                item_list[0].project_id, [g.id for g in item_list], environment_id=environment_id)
 
         ignore_items = {g.group_id: g for g in GroupSnooze.objects.filter(
             group__in=item_list,

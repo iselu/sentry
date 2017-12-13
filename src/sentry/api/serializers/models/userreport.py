@@ -60,9 +60,14 @@ class UserReportSerializer(Serializer):
 
 class ProjectUserReportSerializer(UserReportSerializer):
     def get_attrs(self, item_list, user):
+        from sentry.api.serializers import GroupSerializer
+
         # TODO(dcramer); assert on relations
         groups = {
-            d['id']: d for d in serialize(set(i.group for i in item_list if i.group_id), user)
+            d['id']: d for d in serialize(
+                set(i.group for i in item_list if i.group_id),
+                user,
+                GroupSerializer(environment_id_func=self.environment_id_func))
         }
 
         attrs = super(ProjectUserReportSerializer, self).get_attrs(item_list, user)
